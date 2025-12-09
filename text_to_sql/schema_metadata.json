@@ -1,0 +1,70 @@
+{
+  "tables": [
+    {
+      "name": "customer",
+      "description": "Stores basic information about each customer in the bank.",
+      "columns": [
+        {"name": "customer_id", "type": "INTEGER", "description": "Unique ID for each customer (Primary Key)"},
+        {"name": "first_name", "type": "VARCHAR", "description": "Customer first name"},
+        {"name": "last_name", "type": "VARCHAR", "description": "Customer last name"},
+        {"name": "email", "type": "VARCHAR", "description": "Customer email address"},
+        {"name": "phone_number", "type": "VARCHAR", "description": "Customer contact number"},
+        {"name": "city", "type": "VARCHAR", "description": "Customer city of residence"},
+        {"name": "created_at", "type": "DATE", "description": "Date the customer record was created"}
+      ]
+    },
+    {
+      "name": "account",
+      "description": "Stores account-level information for each customer.",
+      "columns": [
+        {"name": "account_id", "type": "INTEGER", "description": "Primary key for the account"},
+        {"name": "customer_id", "type": "INTEGER", "description": "Customer linked to this account (Foreign Key)"},
+        {"name": "account_number", "type": "VARCHAR", "description": "Unique account number"},
+        {"name": "account_type", "type": "VARCHAR", "description": "Type of account (Savings, Current, Loan, etc.)"},
+        {"name": "balance", "type": "DECIMAL", "description": "Current balance in the account"},
+        {"name": "opened_date", "type": "DATE", "description": "Date when the account was opened"},
+        {"name": "status", "type": "VARCHAR", "description": "Status of the account (Active, Closed, Frozen, etc.)"}
+      ]
+    },
+    {
+      "name": "transaction_intent",
+      "description": "Stores details about user transaction intents.",
+      "columns": [
+        {"name": "intent_id", "type": "INTEGER", "description": "Primary key for each intent"},
+        {"name": "customer_id", "type": "INTEGER", "description": "Customer associated with the intent (Foreign Key)"},
+        {"name": "account_id", "type": "INTEGER", "description": "Account linked to the intent (Foreign Key)"},
+        {"name": "amount", "type": "DECIMAL", "description": "Transaction amount"},
+        {"name": "customer_location", "type": "VARCHAR", "description": "Location of Customer"},
+        {"name": "intent_date", "type": "DATE", "description": "Date of transaction intent"},
+        {"name": "intent_type", "type": "VARCHAR", "description": "Type of transaction intent (Deposit, Withdrawal, Transfer, etc.)"}
+      ]
+    },
+    {
+      "name": "transaction_history",
+      "description": "Stores executed financial transactions between accounts.",
+      "columns": [
+        {"name": "transaction_id", "type": "INTEGER", "description": "Primary key for each transaction"},
+        {"name": "account_id", "type": "INTEGER", "description": "Account associated with this transaction (Foreign Key)"},
+        {"name": "transaction_type", "type": "VARCHAR", "description": "Type of transaction (Credit, Debit, Transfer, etc.)"},
+        {"name": "amount", "type": "DECIMAL", "description": "Transaction amount"},
+        {"name": "transaction_date", "type": "DATE", "description": "Date of transaction"},
+        {"name": "status", "type": "VARCHAR", "description": "Transaction status (Completed, Pending, Failed)"},
+        {"name": "remarks", "type": "VARCHAR", "description": "Additional details about the transaction"}
+      ]
+    },
+    {
+      "name": "loan_details",
+      "description": "Contains information about customer loans.",
+      "columns": [
+        {"name": "loan_id", "type": "INTEGER", "description": "Primary key for the loan"},
+        {"name": "customer_id", "type": "INTEGER", "description": "Customer who owns the loan (Foreign Key)"},
+        {"name": "loan_type", "type": "VARCHAR", "description": "Type of loan (Home, Personal, Vehicle, etc.)"},
+        {"name": "loan_amount", "type": "DECIMAL", "description": "Approved loan amount"},
+        {"name": "interest_rate", "type": "DECIMAL", "description": "Interest rate for the loan"},
+        {"name": "start_date", "type": "DATE", "description": "Loan start date"},
+        {"name": "end_date", "type": "DATE", "description": "Loan end or maturity date"},
+        {"name": "status", "type": "VARCHAR", "description": "Current status of loan (Active, Closed, Defaulted)"}
+      ]
+    }
+  ]
+}
