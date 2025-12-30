@@ -1,6 +1,7 @@
 streamlit
 langchain
 langchain-chroma
+langchain_community
 chromadb
 google-genai
 pydantic
