@@ -102,3 +102,37 @@ Now output only the rewritten SQL query:
     new_sql = (response.text or "").strip()
     return new_sql
     
+def answer_question_with_gemini(
+    client,
+    context: str,
+    question: str,
+) -> str:
+    """
+    Answer user questions strictly based on provided context.
+    No SQL generation allowed.
+    """
+    prompt = f"""
+You are a data assistant.
+
+Rules:
+- Answer ONLY using the information present in the provided context.
+- Do NOT generate SQL queries.
+- Do NOT infer or assume anything not explicitly stated.
+- If the answer is not present in the context, reply:
+  "The information is not available in the provided data."
+
+Context:
+{context}
+
+User question:
+{question}
+
+Answer:
+""".strip()
+
+    response = client.models.generate_content(
+        model=GEMINI_MODEL_NAME,
+        contents=prompt,
+    )
+
+    return (response.text or "").strip()
