@@ -136,8 +136,16 @@ if mode == "🧾 Text to SQL" and question:
 
         if st.session_state.refinements:
             st.markdown("**Current refinements:**")
-            for r in st.session_state.refinements:
-                st.markdown(f"- {r}")
+            for idx, r in enumerate(st.session_state.refinements):
+                col1, col2 = st.columns([0.9, 0.1])
+
+                with col1:
+                    st.markdown(f"- {r}")
+
+                with col2:
+                    if st.button("❌", key=f"del_ref_{idx}"):
+                        st.session_state.refinements.pop(idx)
+                        st.rerun()
 
     # -------------------------------
     # Generate SQL
