@@ -52,7 +52,6 @@ with st.sidebar:
     st.markdown("---")
     st.caption("🧠 Gemini 2.5 Flash")
     st.caption("📦 ChromaDB (Persistent)")
-    st.caption("💸 100% Free Stack")
 
 # -------------------------------
 # Mode Selector
